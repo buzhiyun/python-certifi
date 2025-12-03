@@ -38,7 +38,7 @@ jobs:
         with:
           # note you'll typically need to create a personal access token
           # with permissions to create releases in the other repo
-          # token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           files: dist/certifi-*
 
   # pypi:
