@@ -26,11 +26,20 @@ jobs:
       - name: Build distributions
         run: python -m build
 
-      - name: Upload distributions
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      # - name: Upload distributions
+      #   uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      #   with:
+      #     name: certifi-dists
+      #     path: dist/
+    
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
-          name: certifi-dists
-          path: dist/
+          # note you'll typically need to create a personal access token
+          # with permissions to create releases in the other repo
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          files: dist/certifi-*
 
   # pypi:
   #   name: Publish to PyPI
